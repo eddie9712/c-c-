@@ -9,6 +9,7 @@ void reverse(char *,int);
    for(i=0;i<number;i++)
   { 
     char *array=calloc(max,sizeof(char));
+     
 
   }
 
