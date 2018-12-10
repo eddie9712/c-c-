@@ -1,56 +1,69 @@
-#include<stdio.h>
-#include<stdlib.h>
-int find(int *,int);
- int main()
+#include<stdio.h> //to add polynomial (algorithm) 
+#include<stdlib.h> 
+#define compare(x,y) ((x)<(y))?-1:((x)==(y))?0:1  
+#define max 100
+typedef struct{
+  float coef;
+  int expon;
+ }polynomial;
+polynomial terms[max];
+int avail=0;
+int starta=0;
+int finisha=0;
+int startb=0;
+int finishb=0;
+void attach(int,int);
+void add(int,int,int,int,int *,int *);
+void add(int starta,int finisha,int startb,int finishb,int *startd,int *finishd)
 {
-   int number,i,l;
-  scanf("%d",&number);  //input the times to find
-   for(i=0;i<number;i++)
-  {
-   int array[100];
-   int p=0;
-   int j;
-    int k;
-   char y;
-   int temp=0;
-   do
-   {
-    scanf("%d",&array[p]);
-    p++;
-   }while(y=getchar()!='\n');
-   int n=array[0];
-   int *array2=calloc(n,sizeof(int));
-    for(j=0;j<n;j++)
-   {
-      array2[j]=array[j+1];
-   }
-   temp=find(array2,n);
-   free(array2); 
-   printf("%d\n",temp); 
-}
-}
-int find(int array2[],int n)
-{
-  int i;
-   int temp1;
-  int count;
-  for(i=0;i<n;i++)
+  float coefficien;
+  *startD=avail;
+  while(starta<=finisha&&starb<=finishb)
  {
-    temp1=array2[i];  
-    count=0;
-    while(1)
-  { 
-     if(count>n-1)
-    {
-       return temp1;
-    }
-    if((array2[count]==temp1)&&(count!=i))
-   { 
-     break;
+   switch(compare(terms[starta].expon,terms[startb].expon))
+  {
+   case -1: //exponential a<b
+    attach(terms[startb].coef,terms[startb].expon);
+    start b++;
+    braek;
+   case 0: //exponential a==b
+    cofficient=terms[startb]+terms[startb];
+    if(cofficient)
+     attach(cofficient,terms[startb].expon);
+    starta++;
+    startb++;
+    break;
+   case 1:
+    attach(terms[starta].coef,terms[starta].expon);
+    start b++;
+    braek;
+  } // maybe one of the polynomial get finished first 
+   for(;startb<=finishb;startb++)  //if a empty
+   {
+     attach(terms[startb].coef,terms[startb].expon);
    }
-    else
-    count++;
-  }
+   for(;starta<=starta;starta++)   //if b empty
+   {  
+      attach(terms[starta].coef,terms[starta].expon);
+   }
+   *finishd=avail-1;
  }
 }
+ void attach(float coefficient,int exponent)
+{
+  if(avail>=max)
+ {
+   fprintf(stderr,"too many terms in the poly \n");
+   exit();
+ }
+  terms[avail].coef=coefficent;
+  terms[avail].expon=exponent;
+  avail++;
+}
+
+
+ 
+
+
+
 
