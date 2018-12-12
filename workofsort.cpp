@@ -26,7 +26,7 @@ void swap(int *,int,int);
   }
   duplicate_array(arraya,arrayb,n);
   heap_sort(arraya,n);
-  quick_sort(arrayb,0,n-1);
+  quick_sort(arrayb,1,n);
   cout<<"by heap_sort:\n";
   printout_array(arraya,n);
   cout<<"by quick_sort:\n";
@@ -76,7 +76,6 @@ void buildmaxheap(int arraya[],int n)
          child=2*root+1;
       }  
     }
-
 }
 void heap_sort(int arraya[],int n)
 {
@@ -93,21 +92,24 @@ void heap_sort(int arraya[],int n)
 void quick_sort(int arrayb[],int left,int right)
 { 
    int pivot,i,j;
-   int temp;
    if(left<right)
   {
+    i=left-1;
+    j=right;
     pivot=arrayb[left];
     do
-      {
+       {
         do i++;
          while(arrayb[i]<pivot);
         do j--;
          while(arrayb[j]>pivot);
+         if(i<j) 
+         swap(arrayb,i,j);
         }while(i<j);
-         swap(arrayb,j,left);
-         quick_sort(arrayb,left,i-1);//left array
-         quick_sort(arrayb,i+1,right);//right array   
-      }
+         swap(arrayb,j,left-1);
+         quick_sort(arrayb,1,j-1);//left array
+         quick_sort(arrayb,j+1,right);//right array   
+  }
 }
 
 
