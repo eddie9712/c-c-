@@ -1,7 +1,6 @@
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
-#include<random>
 using namespace std;
 void duplicate_array(int *,int *,int);
 void printout_array(int *,int);
@@ -94,24 +93,21 @@ void quick_sort(int arrayb[],int left,int right)
 { 
    int pivot,i,j;
    int temp;
-   if(left<right)
+   i=left;
+   j=right+1;
+   pivot=arrayb[left];
+  if(left<right)
   {
-    pivot=arrayb[left];
-    do
-      {
+     do
+       {
         do i++;
          while(arrayb[i]<pivot);
         do j--;
          while(arrayb[j]>pivot);
+        swap(arrayb,j,i);
         }while(i<j);
-         swap(arrayb,j,left);
-         quick_sort(arrayb,left,i-1);//left array
-         quick_sort(arrayb,i+1,right);//right array   
-      }
-}
-
-
-
-
-
-
+         swap(arrayb,i,left);
+         quick_sort(arrayb,left,j-1);//left array
+         quick_sort(arrayb,j+1,right);//right array   
+   }
+} 
