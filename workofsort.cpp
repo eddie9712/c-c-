@@ -57,7 +57,6 @@ void printout_array(int arraya[],int n)
 }
 void buildmaxheap(int arraya[],int n)
 {
-  
      for (int i=(n/2)-1;i>=0;i--) 
     {
        int child=2*i+1; //left child
@@ -75,7 +74,6 @@ void buildmaxheap(int arraya[],int n)
          child=2*root+1;
       }  
     }
-
 }
 void heap_sort(int arraya[],int n)
 {
@@ -90,24 +88,29 @@ void heap_sort(int arraya[],int n)
   }
 }
 void quick_sort(int arrayb[],int left,int right)
-{ 
-   int pivot,i,j;
-   int temp;
-   i=left;
-   j=right+1;
-   pivot=arrayb[left];
-  if(left<right)
-  {
-     do
-       {
-        do i++;
-         while(arrayb[i]<pivot);
-        do j--;
-         while(arrayb[j]>pivot);
-        swap(arrayb,j,i);
-        }while(i<j);
-         swap(arrayb,i,left);
-         quick_sort(arrayb,left,j-1);//left array
-         quick_sort(arrayb,j+1,right);//right array   
-   }
-} 
+{
+  if(left < right)
+	{
+		int pivot = arrayb[left];//假設pivot在第一個的位置
+		int l = left;
+		int r = right+1 ;
+		
+		while (1)
+		{
+			while (l < right && arrayb[++l] < pivot);//向右找小於pivot的數值的位置
+			while (r > 0 && arrayb[--r] > pivot);//向左找大於pivot的數值的位置
+
+			if (l >= r)//範圍內pivot右邊沒有比pivot小的數,反之亦然
+			{
+				break;
+			}
+		
+			swap(arrayb[l], arrayb[r]);//比pivot大的數移到右邊，比pivot小的數換到左邊
+		}
+
+		swap(arrayb[left], arrayb[r]);//將pivot移到中間
+
+		quick_sort(arrayb, left, r - 1);//左子數列做遞迴
+		quick_sort(arrayb, r + 1, right);//右子數列做遞迴
+	}
+}
