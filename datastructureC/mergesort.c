@@ -4,24 +4,32 @@
 void merge(int *,int,int,int);
 void mergesort(int *,int,int); 
 int main()
-{
-  int n,i;
+{            
+  int n,i,buff,k;
+  k=0;
   int array[max];
-  printf("input the numbers for sorting:");
-  scanf("%d",&n);
-  printf("input:");
-  for(i=0;i<n;i++)
+  FILE *fin,*fout;                   //read the file
+  fin = fopen("./input.txt","r");
+  fscanf(fin,"%d",&n);
+    while(1)
   {
-     scanf("%d",&array[i]);
-  }
-  mergesort(array,1,n);
-  printf("output:");
-  for(i=0;i<n;i++)
+    if(k==n)
+     break;
+    fscanf(fin,"%d",&buff);
+    array[k]=buff;
+    k++;
+  }  
+  fclose(fin);
+  mergesort(array,1,n);   //do the mergesort
+  fout=fopen("./output.txt", "w+");//output the file
+  fprintf(fout,"%d\n",n);
+   for(i=0;i<n;i++)
   {
-     printf("%d\n",array[i]);
+     fprintf(fout,"%d\n",array[i]);
   }
+ fclose(fout);
 }
-void merge(int array[],int p,int q,int r)
+void merge(int array[],int p,int q,int r)   //do the merge
 {
   int l1,l2,i,j,k;
   l1=q-p+1;
@@ -55,7 +63,7 @@ void merge(int array[],int p,int q,int r)
   free(left);
   free(right); 
 }
-void mergesort(int array[],int p,int r)
+void mergesort(int array[],int p,int r)   //mergesort  
 {
  int q;
  if(p<r)
