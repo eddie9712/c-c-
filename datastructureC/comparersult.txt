@@ -1,0 +1,3 @@
+the time of the insertionsort: 4
+the time of the quicksort: 19485
+the time of the insertionsort: 7347
