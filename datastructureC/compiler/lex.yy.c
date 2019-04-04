@@ -375,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 53
-#define YY_END_OF_BUFFER 54
+#define YY_NUM_RULES 54
+#define YY_END_OF_BUFFER 55
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -386,7 +386,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[126] =
     {   0,
-        0,    0,   54,   53,   44,   29,   53,    5,   53,   30,
+        0,    0,   55,   53,   44,   29,   53,    5,   53,   30,
        31,    3,    1,   11,    2,    4,   41,   12,    7,   14,
         6,   45,    9,   10,   45,   45,   45,   45,   45,   45,
        45,   45,   45,   45,   45,   32,   53,   33,   53,    0,
@@ -563,8 +563,14 @@ char *yytext;
 #line 2 "compiler_hw1.l"
         #include <stdio.h>
 	#include <stdlib.h>
+        #include <string.h>
+        int lc=0;
+        int count2=0;
+        char forcom[1000]={'0'};
+        int test=0;
+        int findcom(char *);
 /* Define regular expression label */
-#line 568 "lex.yy.c"
+#line 574 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -782,9 +788,9 @@ YY_DECL
 		}
 
 	{
-#line 23 "compiler_hw1.l"
+#line 29 "compiler_hw1.l"
 
-#line 788 "lex.yy.c"
+#line 794 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -843,273 +849,278 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 24 "compiler_hw1.l"
+#line 30 "compiler_hw1.l"
 { printf("%s \t ADD\n", yytext); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 25 "compiler_hw1.l"
+#line 31 "compiler_hw1.l"
 { printf("%s \t SUB\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 26 "compiler_hw1.l"
+#line 32 "compiler_hw1.l"
 { printf("%s \t MUL\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "compiler_hw1.l"
+#line 33 "compiler_hw1.l"
 { printf("%s \t DIV\n", yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 28 "compiler_hw1.l"
+#line 34 "compiler_hw1.l"
 { printf("%s \t MOD\n", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "compiler_hw1.l"
+#line 35 "compiler_hw1.l"
 { printf("%s \t MT\n", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 30 "compiler_hw1.l"
+#line 36 "compiler_hw1.l"
 { printf("%s \t LT\n", yytext); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "compiler_hw1.l"
+#line 37 "compiler_hw1.l"
 { printf("%s \t OR\n", yytext); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 32 "compiler_hw1.l"
+#line 38 "compiler_hw1.l"
 { printf("%s \t LSB\n", yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 33 "compiler_hw1.l"
+#line 39 "compiler_hw1.l"
 { printf("%s \t RSB\n", yytext); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 34 "compiler_hw1.l"
+#line 40 "compiler_hw1.l"
 { printf("%s \t COMMA\n", yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 35 "compiler_hw1.l"
+#line 41 "compiler_hw1.l"
 { printf("%s \t SEMICOLON\n", yytext); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "compiler_hw1.l"
+#line 42 "compiler_hw1.l"
 { printf("%s \t QUOTA\n", yytext); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "compiler_hw1.l"
+#line 43 "compiler_hw1.l"
 { printf("%s \t ASSIGN\n", yytext); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "compiler_hw1.l"
+#line 44 "compiler_hw1.l"
 { printf("%s \t AND\n", yytext); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 39 "compiler_hw1.l"
+#line 45 "compiler_hw1.l"
 { printf("%s \t PRINT\n", yytext); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 40 "compiler_hw1.l"
+#line 46 "compiler_hw1.l"
 { printf("%s \t IF\n", yytext); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 41 "compiler_hw1.l"
+#line 47 "compiler_hw1.l"
 { printf("%s \t else\n", yytext); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "compiler_hw1.l"
+#line 48 "compiler_hw1.l"
 { printf("%s \t for\n", yytext); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 43 "compiler_hw1.l"
+#line 49 "compiler_hw1.l"
 { printf("%s \t while\n", yytext); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "compiler_hw1.l"
+#line 50 "compiler_hw1.l"
 { printf("%s \t INT\n", yytext); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 45 "compiler_hw1.l"
+#line 51 "compiler_hw1.l"
 { printf("%s \t FLOAT\n", yytext); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 46 "compiler_hw1.l"
+#line 52 "compiler_hw1.l"
 { printf("%s \t STRING\n", yytext); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 47 "compiler_hw1.l"
+#line 53 "compiler_hw1.l"
 { printf("%s \t ADDASGN\n", yytext); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 48 "compiler_hw1.l"
+#line 54 "compiler_hw1.l"
 { printf("%s \t SUBASGN\n", yytext); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 49 "compiler_hw1.l"
+#line 55 "compiler_hw1.l"
 { printf("%s \t MULASGN\n", yytext); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 50 "compiler_hw1.l"
+#line 56 "compiler_hw1.l"
 { printf("%s \t DIVASGN\n", yytext); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 51 "compiler_hw1.l"
+#line 57 "compiler_hw1.l"
 { printf("%s \t MODASGN\n", yytext); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 52 "compiler_hw1.l"
+#line 58 "compiler_hw1.l"
 { printf("%s \t NOT\n", yytext); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 53 "compiler_hw1.l"
+#line 59 "compiler_hw1.l"
 { printf("%s \t LB\n", yytext); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 54 "compiler_hw1.l"
+#line 60 "compiler_hw1.l"
 { printf("%s \t RB\n", yytext); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 55 "compiler_hw1.l"
+#line 61 "compiler_hw1.l"
 { printf("%s \t LCB\n", yytext); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 56 "compiler_hw1.l"
+#line 62 "compiler_hw1.l"
 { printf("%s \t RCB\n", yytext); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 57 "compiler_hw1.l"
+#line 63 "compiler_hw1.l"
 { printf("%s \t VOID\n", yytext); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 58 "compiler_hw1.l"
+#line 64 "compiler_hw1.l"
 { printf("%s \t BOOL\n", yytext); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 59 "compiler_hw1.l"
+#line 65 "compiler_hw1.l"
 { printf("%s \t TRUE\n", yytext); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 60 "compiler_hw1.l"
+#line 66 "compiler_hw1.l"
 { printf("%s \t FALSE\n", yytext); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 61 "compiler_hw1.l"
+#line 67 "compiler_hw1.l"
 { printf("%s \t RET\n", yytext); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 62 "compiler_hw1.l"
+#line 68 "compiler_hw1.l"
 { printf("%s \t CONT\n", yytext); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 63 "compiler_hw1.l"
+#line 69 "compiler_hw1.l"
 { printf("%s \t BREAK\n", yytext); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 64 "compiler_hw1.l"
+#line 70 "compiler_hw1.l"
 { printf("%s \t I_CONST\n", yytext); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 65 "compiler_hw1.l"
+#line 71 "compiler_hw1.l"
 { printf("%s \t F_CONST\n", yytext); }
 	YY_BREAK
 case 43:
 /* rule 43 can match eol */
 YY_RULE_SETUP
-#line 66 "compiler_hw1.l"
+#line 72 "compiler_hw1.l"
 { printf("%s \t STR_CONST\n", yytext); }
 	YY_BREAK
 case 44:
 /* rule 44 can match eol */
 YY_RULE_SETUP
-#line 68 "compiler_hw1.l"
-{;}
+#line 73 "compiler_hw1.l"
+{ ++lc; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 69 "compiler_hw1.l"
+#line 74 "compiler_hw1.l"
 { printf("%s \t ID\n", yytext); }
 	YY_BREAK
 case 46:
 /* rule 46 can match eol */
 YY_RULE_SETUP
-#line 70 "compiler_hw1.l"
-{ printf("%s \t c comment\n",yytext); }
+#line 75 "compiler_hw1.l"
+{ printf("%s \t c comment\n",yytext); strcpy(forcom,yytext); findcom(forcom);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 71 "compiler_hw1.l"
-{printf("%s \t c++comment\n",yytext); }
+#line 76 "compiler_hw1.l"
+{ printf("%s \t c++comment\n",yytext); count2++;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 72 "compiler_hw1.l"
+#line 77 "compiler_hw1.l"
 {printf("%s \t INC\n",yytext); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 73 "compiler_hw1.l"
+#line 78 "compiler_hw1.l"
 {printf("%s \t DEC\n",yytext); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 74 "compiler_hw1.l"
+#line 79 "compiler_hw1.l"
 {printf("%s \t MTE\n",yytext); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 75 "compiler_hw1.l"
+#line 80 "compiler_hw1.l"
 {printf("%s \t LTE\n",yytext); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 76 "compiler_hw1.l"
+#line 81 "compiler_hw1.l"
 {printf("%s \t EQ\n",yytext); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 78 "compiler_hw1.l"
+#line 82 "compiler_hw1.l"
+{/**/}
+	YY_BREAK
+case 54:
+YY_RULE_SETUP
+#line 83 "compiler_hw1.l"
 ECHO;
 	YY_BREAK
-#line 1113 "lex.yy.c"
+#line 1124 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2110,8 +2121,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 78 "compiler_hw1.l"
-
+#line 83 "compiler_hw1.l"
 
 
 /*	C Code section */
@@ -2119,15 +2129,28 @@ int yywrap(void)
 {
     return 1;
 }
-
 int main(int argc,char *argv[])
 {
-	yyin = fopen(argv[1],"r");
-	yylex();
-
-	printf("comment: 1 lines\n\n");
-
-	return 0;
+    yyin = fopen(argv[1],"r");
+    yylex();
+    printf("lines of comments: %d \n",test+count2);
+    printf("lines of codes: %d \n",lc+test-1); 
+    return 0;
+}
+int findcom(char forcom[])
+{
+   int l;
+   int i=0;
+    l=strlen(forcom);
+    while(i!=l)
+    {
+       if(forcom[i]=='\n')
+       {
+           test++;
+       }
+        i++;
+    }
+    test++;
 }
 
 
