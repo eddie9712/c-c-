@@ -2,6 +2,7 @@
 exercise of c/c++
 
 # todo list<br>
+1.banker's algorithm
 2.bucket sort
 3.max heap
 4.modify selectionsort
