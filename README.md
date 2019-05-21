@@ -11,4 +11,3 @@ exercise of c/c++
 7.RB-tree(implemention)
 8.linkedlist
 9.greedy algorithm
-10.implementation of operating system
