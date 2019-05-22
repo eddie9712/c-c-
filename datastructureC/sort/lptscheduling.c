@@ -55,3 +55,12 @@ int choosemachine(int trace[],int numofmachines)
      }
      return index;
 }
+/*
+   時間複雜度估算:
+    n 個jobs 
+    m 個machines 
+    insertionsort O(n)
+    choose machines O(m)
+    每個job一次choose
+    =>O(n)+nO(m) 
+*/
