@@ -1,4 +1,4 @@
-#include<stdio.h>     //suppose there are processes running(with types of resources) 
+#include<stdio.h>     //suppose there are processes running(with types of resources) (not test yet)
 #include<stdlib.h>    //using banker's algorithm to decide which request can be admitted
 void saftey(int,int,int **,int **,int *,int *,int *,char);  //check if the request is safety
 bool workcomplete(int,int **,int *);
@@ -172,7 +172,7 @@ void safety(int type,int process,int numofprocess,int allocation[][],int need[][
    change=0;
    for(i=0;i<numofprocess;i++)  //find which process can complete
    {
-    if(finish[i]==0&&workcomplete(type,need,work))
+    if(finish[i]==0&&workcomplete(type,need,i,work))
     {
      finish[i]=1;
      for(j=0;j<type;j++)   //give the resource back
@@ -200,7 +200,12 @@ void safety(int type,int process,int numofprocess,int allocation[][],int need[][
    }
  }
 }
-bool workcomplete()
+bool workcomplete(int type,int need[][],int process,int work[])
 {
-
+  int i;
+  for(i=0;i<type;i++)
+  {
+    if(need[proces][i]>work[i])
+      return 0;     
+  }
 }  
