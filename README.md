@@ -2,11 +2,9 @@
 exercise of c/c++
 
 # todo list<br>
-1.banker's algorithm<br>
 2.max heap of priority queue<br>
 3.heapsort<br>
 4.modify selectionsort<br>
-5.radixsort<br>
 6.binaytree(implemention)<br>
 7.RB-tree(implemention)<br>
 8.linkedlist<br>
