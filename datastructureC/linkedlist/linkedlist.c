@@ -8,15 +8,15 @@ typedef struct node
 }node;
 void traversal(nodeptr);
 nodeptr search(nodeptr,int);                    //SEARCH(S, k)
-void insert(nodeptr,int);                    //INSERT(S, x)
-void delete(nodeptr,int);                    //DELETE(S, x)
+nodeptr insert(nodeptr,int);                    //INSERT(S, x)
+nodeptr delete(nodeptr,int);                    //DELETE(S, x)
 int minimum(nodeptr);                    //MINIMUM(S)
-int maximun(nodeptr);                    //MAXIMUM(S)
+int maximum(nodeptr);                    //MAXIMUM(S)
 int successor(nodeptr,int);                    //SUCCESSOR(S, x)
 int predecessor(nodeptr,int);                   //PREDECESSOR(S, x)
 int main()
 {
-   int n,i,temp;
+   int n,i,temp,input,k,j;
    char c;   //input instruction
    printf("how many numbers to build to initialized the linked list");
    scanf("%d",&n);
@@ -25,98 +25,104 @@ int main()
    for(i=0;i<n;i++)   //build the linked list 
    {
     scanf("%d",&temp);
-    insert(head,temp);     
+    head=insert(head,temp);
    }
    while(1)   //input the char to decide the operation 
    {
+     printf("input the operations:(t,s,i,d,m,a,e,p):");
+     getchar();
      scanf("%c",&c);
      switch(c)
      {
-        case t:
+        case 't':
             traversal(head);
             break;
-        case i:   //insert
+        case 'i':   //insert
         printf("input the data for inserting:");
-            int input;
             scanf("%d",&input);
-            insert(head,a);
+            head=insert(head,input);
+            printf("after insertion\n");
             traversal(head);        
             break; 
-        case d:    //delete
-        prinf("input the number to delete:");
-          scanf("%d",&a);
-          delete(head,a);
+        case 'd':    //delete
+        printf("input the number to delete:");
+          scanf("%d",&input);
+          head=delete(head,input);
+          printf("after deletio\n");
           traversal(head);
         break; 
-        case m:    //mini
-          int k=minimum(head);
+        case 'm':    //mini
+          k=minimum(head);
           printf("the smallest number:%d",k);
         break; 
-        case a:    //max
-          int j=maximum(head);
+        case 'a':    //max
+          j=maximum(head);
           printf("the largest number:%d",j); 
         break; 
-        case s:   //successor
+        case 's':   //successor
           printf("find the successor of ?:");
           scanf("%d",&input);
           k=successor(head,input);
           printf("find: %d",k);
         break; 
-        case p:     //predecessor
+        case 'p':     //predecessor
           printf("find the predecessor of ?:");
           scanf("%d",&input);
           k=successor(head,input);
           printf("find: %d",k);
         break; 
-        case e:    //search
+        case 'e':    //search
          printf("number to search:");
+         nodeptr test;
          scanf("%d",&input);
-         search(head,input);
+         test=search(head,input);
+        if(test!=0)
+        printf("exist");
         break; 
         default:
         printf("input error!");
         }
     }
 }
-void traversal(nodeptr p1);
+void traversal(nodeptr ptr)
 {
-    if(p1==NULL)
+    if(ptr==NULL)
     {
       printf("linked list empty!\n");
     } 
     else
     {
       nodeptr x=NULL;
-      x=p1;
-      while(p1!=NULL)
+      x=ptr;
+      while(x!=NULL)
       {
-       printf("%d",p1->data); 
-       p1=p1->next;
+       printf("%d",x->data); 
+       x=x->next;
       }
     }
 }
-nodeptr search(nodeptr p1,int k);                    //SEARCH(S, k)
+nodeptr search(nodeptr p1,int k)                    //SEARCH(S, k)
 {
-   if(p1=NULL)
+   if(p1==NULL)
    {
-       printf("linkedlist empty");
+     printf("linkedlist empty");
    }  
    else
    {
-       node x=NULL;
+       nodeptr x=NULL;
        x=p1;
        while(x!=NULL)
        {
          if(x->data==k)
           {
-            nodeptr p2=x;
-            return p2;
+            return x;
           }
+          x=x->next;
        } 
       printf("not found");
    }
 }
-void insert(nodeptr p1,int a);                    //INSERT(S, x)
+nodeptr insert(nodeptr p1,int a)                   //INSERT(S, x)
 { 
     nodeptr p2;
     p2=p1;
@@ -126,10 +132,9 @@ void insert(nodeptr p1,int a);                    //INSERT(S, x)
     temp->data=a;
     while(1)
     {
-      if(p1=NULL)   //empty
+      if(p1==NULL)   //empty
       {
         p1=temp;
-        free(temp);
         break;
       }      
       else
@@ -137,44 +142,41 @@ void insert(nodeptr p1,int a);                    //INSERT(S, x)
         if(p2->next==NULL) 
          {
             p2->next=temp;
-            free(temp);
-            break; 
+            return p1;
          }
-         p2=p2->next;      
       }
+      p2=p2->next; 
     }
 }
-void delete(nodeptr p1,int a);                    //DELETE(S, x)
+nodeptr delete(nodeptr p1,int a)                  //DELETE(S, x)
 {
    nodeptr deletenode;
    nodeptr acess=p1;
    if(p1==NULL)
     { 
      printf("nothing to delete!");
-     return ;
     }
    while(1)
    {
-     if(acess->next->data==k)   //peek at the next node
+     if(acess->next->data==a)   //peek at the next node
      {
         deletenode=acess->next;
         acess->next=acess->next->next;
         deletenode->next=NULL;                   //delete node
-        free(deletenode);
-        return ;
+        return p1;
       } 
       acess=acess->next;  
    }
 }
-int minimum(nodeptr p1);                    //MINIMUM(S)
+int minimum(nodeptr head)                    //MINIMUM(S)
 {
   int temp;
-  nodeptr x=p1;
-  if(p1==NULL)
+  nodeptr x=head;
+  if(head==NULL)
     printf("empty\n");
   else
   {
-    temp=p1->data;
+    temp=head->data;
     while(x->next!=NULL)
     {
      if(temp>x->data) 
@@ -186,7 +188,7 @@ int minimum(nodeptr p1);                    //MINIMUM(S)
     return temp;
   }
 }
-int maximun(nodeptr p1);                    //MAXIMUM(S)
+int maximum(nodeptr p1)                    //MAXIMUM(S)
 {
  int temp;
   nodeptr x=p1;
@@ -195,7 +197,7 @@ int maximun(nodeptr p1);                    //MAXIMUM(S)
   else
   {
     temp=p1->data;
-    while(x->next!=NULL)
+    while(x!=NULL)
     {
      if(temp<x->data) 
      {
@@ -206,17 +208,17 @@ int maximun(nodeptr p1);                    //MAXIMUM(S)
     return temp;
   }
 }
-int successor(nodeptr p1,int a);                    //SUCCESSOR(S, x)
+int successor(nodeptr p1,int a)                    //SUCCESSOR(S, x)
 {
    nodeptr x;
+   x=p1;
    if(p1==NULL)
      {
         printf("empty");
-        return ;
      }
     else
     {
-      while(x->next==NULL)
+      while(x->next!=NULL)
       {
          if(x->data==a)
          {
@@ -227,13 +229,13 @@ int successor(nodeptr p1,int a);                    //SUCCESSOR(S, x)
       printf("not exist\n");
     }
 }
-int predecessor(nodeptr p1,int a);    
+int predecessor(nodeptr p1,int a)    
 {
     nodeptr x;
+    x=p1;
     if(p1==NULL)
     {
        printf("empty\n");
-       return ;
     }
     else
     {
@@ -246,6 +248,4 @@ int predecessor(nodeptr p1,int a);
           x=x->next;
         }
     }
-
-
 }    
