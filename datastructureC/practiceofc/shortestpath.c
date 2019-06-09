@@ -20,8 +20,8 @@ void swap(heapnode *,int,int);
 void delete();
 void buildminheap();
 void minheapfy();
+void find();
 int extractmin();
-void modify();
 void relate();
 void print();    //print the outcome
 int generateInput();  //產生輸入檔
@@ -150,7 +150,6 @@ void findshortestpath(nodeptr *p1,int printdata,int size,int start)
      min=extractmin(heap,printdata,sizeofheap);   //find the smallest element of the heap  and  move the element from the heap to the set of founded
      sizeofheap--;
      relate(min,heap,p1,sizeofheap);   //find the vertex which near to the vertex fonded
-     modify();   //modify the minheap
      printdata[j]=min;   //record the vertex
    }
 }
@@ -168,9 +167,13 @@ int extractmin(heapnode heap[],int sizeofheap)   //return the minimum distance o
 void relate(int from,heapnode heap[],nodeptr p1[],int sizeofheap)
 {
    nodeptr x;
-   p1[]
-
-
+   x=p1[from];
+   while(x!=NULL)
+   {
+     find(heap,x,from,sizeofheap);   //modify the distance of each node
+     x=x->next;
+   }
+   buildminheap(heap,sizeofheap);
 }
 void buildminheap(heapnode heap[],int size)
 {
@@ -218,4 +221,27 @@ void swap(heapnode heap[],int a,int b)
    heap[b].predecessor=temp2;
    heap[b].element=temp3;
 }
+void find(heapnode heap[],nodeptr x,int from,int sizeofheap)
+{
+  int i; 
+  for(i=1;i<=sizeofheap;i++)   //traversal the heap array
+  {
+     if(x->vertex==heap[i].element)   //find the node in heap
+     {
+        if(heap[i].distance>heap[from].distance+x->pathlength)//modify the heapnode if path smaller
+        {
+          heap[i].distance=heap[from].distance+x->pathlength;
+          heap[i].predecessor=0;
+        } 
+     }
+  }
+}
+void print(int printdata[],int size)
+{
+  int i;
+  for(i=0;i<printdata;i++)
+  {
+    printf("%d\n",printdata[i]); 
+  }
+} 
 
