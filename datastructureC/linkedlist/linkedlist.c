@@ -14,6 +14,7 @@ int minimum(nodeptr);                    //MINIMUM(S)
 int maximum(nodeptr);                    //MAXIMUM(S)
 int successor(nodeptr,int);                    //SUCCESSOR(S, x)
 int predecessor(nodeptr,int);                   //PREDECESSOR(S, x)
+nodeptr* reverse(nodeptr *);
 int main()
 {
    int n,i,temp,input,k,j;
@@ -34,6 +35,10 @@ int main()
      scanf("%c",&c);
      switch(c)
      {
+        case 'r': //reverse the linked list
+          traversal(head);
+          reverse(&head);
+           break;           
         case 't':
             traversal(head);
             break;
@@ -76,11 +81,11 @@ int main()
          nodeptr test;
          scanf("%d",&input);
          test=search(head,input);
-        if(test!=0)
-        printf("exist");
-        break; 
-        default:
-        printf("input error!");
+         if(test!=0)
+         printf("exist");
+         break; 
+          default:
+           printf("input error!");
         }
     }
 }
@@ -249,3 +254,32 @@ int predecessor(nodeptr p1,int a)
         }
     }
 }    
+nodeptr *reverse(nodeptr *p1)  //parameter is the head of the linkedlist
+{
+  printf("before reverse:"); //berfore reverse
+  traversal((*p1));
+  if((*p1)==NULL)
+  {
+    printf("empty list");
+  }
+  else
+  {
+    nodeptr pre,cur,nextone;
+    pre=(*p1);   
+    cur=(*p1)->next;
+    nextone=cur->next;
+    pre->next=NULL;
+    while(1)
+   {
+    cur->next=pre;
+    if(nextone==NULL)
+      break;
+    pre=cur;
+    cur=nextone;
+    nextone=nextone->next;    
+   }
+   (*p1)=cur;
+   printf("after reverse:");
+   traversal((*p1)); 
+  }
+  } 
