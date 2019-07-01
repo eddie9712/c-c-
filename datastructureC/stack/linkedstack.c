@@ -38,8 +38,8 @@ nodeptr pop(nodeptr *top)
 {
    if((*top)==NULL)
    {
-     printf("stack empty!");
-     exit(1);
+    printf("stack empty!");
+    exit(1);
    }
    else
    {
