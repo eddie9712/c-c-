@@ -1,4 +1,4 @@
-#include<stdio.h>  //convert infix format to others 
+#include<stdio.h>  //convert infix format to others(not finished yet)
 #include<stdlib.h>
 #include<stdbool.h>
 #define stacksize 50
