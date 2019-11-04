@@ -12,7 +12,6 @@ typedef struct node
 typedef struct heapnode *heapnodeptr;
 typedef struct heapnode
 {
-   int predecessor;
    int distance;
    int element;
 }heapnode;
@@ -32,7 +31,7 @@ int main()
     int size=6,i,j;
     //size=generateInput();
     int s;
-    int array2d[6][6]={{0,8,0,0,0,1},{3,0,1,0,0,0},{5,0,0,2,2,0},{0,4,6,0,7,3},{0,0,0,0,0,0},{0,0,2,8,0,0}};   //因為沒有讀檔功能所以直接放入array
+    //int array2d[6][6]={{0,8,0,0,0,1},{3,0,1,0,0,0},{5,0,0,2,2,0},{0,4,6,0,7,3},{0,0,0,0,0,0},{0,0,2,8,0,0}};   //因為沒有讀檔功能所以直接放入array
     //read(array2d);
     nodeptr *arraylinked=calloc(size,sizeof(nodeptr));
     for(i=0;i<size;i++)
@@ -187,7 +186,7 @@ void buildminheap(heapnode heap[],int size)
   int n=size/2;  
   for(i=n;i>=1;i--)  //minheapfy n nodes
   {
-    minheapfy(heap,i,size);
+    minheapfy(heap,i,size);9
   }
 }
 void minheapfy(heapnode heap[],int k,int size)

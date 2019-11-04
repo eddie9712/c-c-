@@ -5,9 +5,9 @@ typedef struct node{
    int data;
    nodeptr next;
 }node;
-int ilen(nodeptr);
 int rlen(nodeptr);
 void insert(nodeptr *,int);
+nodeptr new(int);
 int main()
 {
    int i,input;
@@ -16,21 +16,38 @@ int main()
    for(i=0;i<5;i++)   //input five node
    {
      scanf("%d",&input);
-     insert(head,input); 
+     insert(&head,input); 
    }
    printf("%d",rlen(head));
-   printf("%d",ilen(head));  
-
 }
-void insert()
+nodeptr new(int key)
 {
-   
+  nodeptr t;
+  t=malloc(sizeof(node));
+  t->data=key;
+  t->next=NULL;
+  return t;
 }
-int rlen()
+void insert(nodeptr *p1,int key)
 {
-
+    if((*p1)==NULL)
+    {
+      (*p1)=new(key); 
+    }
+    else
+    {
+      nodeptr p=new(key);
+      p->next=(*p1); 
+      (*p1)=p;
+      p=NULL; 
+    }
+}
+int rlen(nodeptr p1)   //recursive version
+{
+   if(p1==NULL)
+     return 0;
+   else 
+     return 1+rlen(p1->next);
 }    
-int ilen()
-{
 
-}
+

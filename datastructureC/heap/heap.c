@@ -111,7 +111,7 @@ void insert(int heap[],int n,int key)
   j=n+1;
   while(i>=1)
   {
-    if(heap[j]<=heap[i])  //if key <= parent node,no swap
+    if(heap[j]<=heap[i])  //if key <= parent node,else swap
     {
       break;   
     }
